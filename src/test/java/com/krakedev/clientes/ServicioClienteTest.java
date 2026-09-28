@@ -7,12 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.stereotype.Service;
 
 import com.krakedev.clientes.entidades.Cliente;
 import com.krakedev.clientes.services.ServicioCliente;
 
-@Service
 public class ServicioClienteTest {
 
 	@Test
@@ -20,7 +18,12 @@ public class ServicioClienteTest {
 
 		ServicioCliente servicio = new ServicioCliente();
 
-		Cliente cliente = new Cliente("1234567890", "Juan", "Perez");
+		Cliente cliente = new Cliente(
+				"1234567890",
+				"Juan",
+				"Perez",
+				"juan@gmail.com"
+		);
 
 		Cliente resultado = servicio.crearCliente(cliente);
 
@@ -28,6 +31,7 @@ public class ServicioClienteTest {
 		assertEquals("1234567890", resultado.getCedula());
 		assertEquals("Juan", resultado.getNombre());
 		assertEquals("Perez", resultado.getApellido());
+		assertEquals("juan@gmail.com", resultado.getEmail());
 	}
 
 	@Test
@@ -35,8 +39,19 @@ public class ServicioClienteTest {
 
 		ServicioCliente servicio = new ServicioCliente();
 
-		Cliente cliente1 = new Cliente("1234567890", "Juan", "Perez");
-		Cliente cliente2 = new Cliente("1234567890", "Carlos", "Lopez");
+		Cliente cliente1 = new Cliente(
+				"1234567890",
+				"Juan",
+				"Perez",
+				"juan@gmail.com"
+		);
+
+		Cliente cliente2 = new Cliente(
+				"1234567890",
+				"Carlos",
+				"Lopez",
+				"carlos@gmail.com"
+		);
 
 		servicio.crearCliente(cliente1);
 
@@ -50,7 +65,12 @@ public class ServicioClienteTest {
 
 		ServicioCliente servicio = new ServicioCliente();
 
-		Cliente cliente = new Cliente("1234567890", "Juan", "Perez");
+		Cliente cliente = new Cliente(
+				"1234567890",
+				"Juan",
+				"Perez",
+				"juan@gmail.com"
+		);
 
 		servicio.crearCliente(cliente);
 
@@ -60,6 +80,7 @@ public class ServicioClienteTest {
 		assertEquals("1234567890", resultado.getCedula());
 		assertEquals("Juan", resultado.getNombre());
 		assertEquals("Perez", resultado.getApellido());
+		assertEquals("juan@gmail.com", resultado.getEmail());
 	}
 
 	@Test
@@ -77,13 +98,26 @@ public class ServicioClienteTest {
 
 		ServicioCliente servicio = new ServicioCliente();
 
-		Cliente cliente1 = new Cliente("1234567890", "Juan", "Perez");
-		Cliente cliente2 = new Cliente("0987654321", "Maria", "Lopez");
+		Cliente cliente1 = new Cliente(
+				"1234567890",
+				"Juan",
+				"Perez",
+				"juan@gmail.com"
+		);
+
+		Cliente cliente2 = new Cliente(
+				"0987654321",
+				"Maria",
+				"Lopez",
+				"maria@gmail.com"
+		);
 
 		servicio.crearCliente(cliente1);
 		servicio.crearCliente(cliente2);
 
 		assertEquals(2, servicio.listar().size());
+		assertEquals("juan@gmail.com", servicio.listar().get(0).getEmail());
+		assertEquals("maria@gmail.com", servicio.listar().get(1).getEmail());
 	}
 
 	@Test
@@ -91,13 +125,20 @@ public class ServicioClienteTest {
 
 		ServicioCliente servicio = new ServicioCliente();
 
-		Cliente cliente = new Cliente("1234567890", "Juan", "Perez");
+		Cliente cliente = new Cliente(
+				"1234567890",
+				"Juan",
+				"Perez",
+				"juan@gmail.com"
+		);
+
 		servicio.crearCliente(cliente);
 
 		Cliente clienteActualizado = new Cliente(
 				"1234567890",
 				"Carlos",
-				"Lopez"
+				"Lopez",
+				"carlos@gmail.com"
 		);
 
 		Cliente resultado = servicio.actualizar(
@@ -108,6 +149,7 @@ public class ServicioClienteTest {
 		assertNotNull(resultado);
 		assertEquals("Carlos", resultado.getNombre());
 		assertEquals("Lopez", resultado.getApellido());
+		assertEquals("carlos@gmail.com", resultado.getEmail());
 	}
 
 	@Test
@@ -118,7 +160,8 @@ public class ServicioClienteTest {
 		Cliente clienteActualizado = new Cliente(
 				"9999999999",
 				"Carlos",
-				"Lopez"
+				"Lopez",
+				"carlos@gmail.com"
 		);
 
 		Cliente resultado = servicio.actualizar(
@@ -134,7 +177,12 @@ public class ServicioClienteTest {
 
 		ServicioCliente servicio = new ServicioCliente();
 
-		Cliente cliente = new Cliente("1234567890", "Juan", "Perez");
+		Cliente cliente = new Cliente(
+				"1234567890",
+				"Juan",
+				"Perez",
+				"juan@gmail.com"
+		);
 
 		servicio.crearCliente(cliente);
 
